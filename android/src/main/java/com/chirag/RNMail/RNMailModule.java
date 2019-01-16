@@ -1,5 +1,6 @@
 package com.chirag.RNMail;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -119,5 +120,14 @@ public class RNMailModule extends ReactContextBaseJavaModule {
         callback.invoke("error");
       }
     }
+  }
+
+  @ReactMethod
+  public void openMailClient() {
+    final Activity activity = getCurrentActivity();
+
+    Intent intent = new Intent(Intent.ACTION_MAIN);
+    intent.addCategory(Intent.CATEGORY_APP_EMAIL);
+    activity.startActivity(intent);
   }
 }
